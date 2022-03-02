@@ -34,4 +34,21 @@ public class MainClassTest extends MainClass
          System.out.println("PASS:testGetLocalNumber:Result_test:" + z);
         }
     }
+
+    //Test_3
+    @Test
+    public void testGetClassString()
+    {
+        String z = this.getClassString ();
+
+        if (z.contains("Hello") ||  z.contains("hello"))
+        {
+            System.out.println("PASS:testGetLocalNumber:Result_test:" + z);
+        }
+        else
+        {
+            Assert.fail("FAIL:testGetLocalNumber:Result_test:"+ z);
+        }
+    }
 }
+

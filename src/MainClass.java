@@ -16,4 +16,14 @@ public class MainClass
         //System.out.println(m);
         return m;
     }
+
+    //Test_3
+    private String class_string = "Hello, world";
+
+    public String getClassString()
+    {
+        String m = this.class_string;
+        //System.out.println(m);
+        return m;
+    }
 }
