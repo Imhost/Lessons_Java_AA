@@ -27,11 +27,11 @@ public class MainClassTest extends MainClass
 
         if (z <= 45)
         {
-            Assert.fail("FAIL:testGetLocalNumber:Result_test:"+ z);
+            Assert.fail("FAIL:testGetClassNumber:Result_test:"+ z);
         }
         else
         {
-         System.out.println("PASS:testGetLocalNumber:Result_test:" + z);
+         System.out.println("PASS:testGetClassNumber:Result_test:" + z);
         }
     }
 
@@ -43,11 +43,11 @@ public class MainClassTest extends MainClass
 
         if (z.contains("Hello") ||  z.contains("hello"))
         {
-            System.out.println("PASS:testGetLocalNumber:Result_test:" + z);
+            System.out.println("PASS:testGetClassString:Result_test:" + z);
         }
         else
         {
-            Assert.fail("FAIL:testGetLocalNumber:Result_test:"+ z);
+            Assert.fail("FAIL:testGetClassString:Result_test:"+ z);
         }
     }
 }
