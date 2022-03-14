@@ -48,23 +48,43 @@ public class FirstATest
 
         Click(
                 By.xpath("//*[contains(@text, 'Поиск по Википедии')]"),
-                "Cannot",
+                "Cannot click",
                 5
         );
 
-//        SendKeys(
-//                By.xpath("//*[contains(@text, 'Поиск по Википедии')]"),
-//                "Java",
-//                "Error Send JAVA",
-//                5
-//        );
-
-        assertElementHasText(
-                By.id("org.wikipedia:id/search_src_text"),
-                "Поиск по Википедии",
+        SendKeys(
+                By.xpath("//*[contains(@text, 'Поиск по Википедии')]"),
+                "Java",
                 "Error Send JAVA",
                 5
         );
+
+        assertElementHasText(
+                By.xpath("//*[contains(@text, 'Java Platform, Standard Edition')]"),
+                "Java Platform, Standard Edition",
+                "Not True Content",
+                5
+        );
+
+        assertElementHasText(
+                By.xpath("//*[contains(@text, 'JavaServer Pages')]"),
+                "JavaServer Pages",
+                "Not True Content",
+                5
+        );
+
+        Click(
+                By.id("org.wikipedia:id/search_close_btn"),
+                "Cannot click",
+                5
+        );
+
+//        assertElementHasText(
+//                By.id("org.wikipedia:id/search_src_text"),
+//                "Поиск по Википедии",
+//                "Error Send JAVA",
+//                5
+//        );
     }
 //---------------------------Func----------------------------------
     private WebElement fTimeout(By by, String error_m, long timeout)
@@ -93,6 +113,7 @@ public class FirstATest
         return element;
     }
 
+
     private WebElement assertElementHasText(By by, String value, String error_m, long timeout)
     {
         WebElement element = fTimeout(by, error_m, timeout);
@@ -102,6 +123,7 @@ public class FirstATest
                 value,
                 compare_value
         );
+        System.out.println(compare_value);
         return element;
     }
 }
