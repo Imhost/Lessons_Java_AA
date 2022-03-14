@@ -61,14 +61,14 @@ public class FirstATest
 
         assertElementHasText(
                 By.xpath("//*[contains(@text, 'Java Platform, Standard Edition')]"),
-                "Java Platform, Standard Edition",
+                "Java",
                 "Not True Content",
                 5
         );
 
         assertElementHasText(
                 By.xpath("//*[contains(@text, 'JavaServer Pages')]"),
-                "JavaServer Pages",
+                "Java",
                 "Not True Content",
                 5
         );
@@ -78,13 +78,6 @@ public class FirstATest
                 "Cannot click",
                 5
         );
-
-//        assertElementHasText(
-//                By.id("org.wikipedia:id/search_src_text"),
-//                "Поиск по Википедии",
-//                "Error Send JAVA",
-//                5
-//        );
     }
 //---------------------------Func----------------------------------
     private WebElement fTimeout(By by, String error_m, long timeout)
@@ -118,12 +111,20 @@ public class FirstATest
     {
         WebElement element = fTimeout(by, error_m, timeout);
         String compare_value = element.getText();
-        Assert.assertEquals(
-                "Not True Content",
-                value,
-                compare_value
-        );
-        System.out.println(compare_value);
+
+        final String phrase = compare_value;
+        final String findWord = value;
+        if (phrase.matches(".*" + findWord + ".*"))
+            System.out.println("Match");
+        else
+            System.out.println("Doesn't match");
+            Assert.assertEquals(
+                    "Not True Content",
+                    value,
+                    compare_value
+            );
         return element;
     }
+
+
 }
