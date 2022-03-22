@@ -38,6 +38,47 @@ public class FirstATest
 //    public void tearDown() {driver.quit();}
 
     @Test
+    public void secondTest()
+    {
+        //Нажать кнопку ПРОПУСТИТЬ после входа в app
+        Click(
+                By.id("org.wikipedia:id/fragment_onboarding_skip_button"),
+                "Cannot click",
+                3
+        );
+
+        //Перейти на строку поиск
+        Click(
+                By.xpath("//*[contains(@text, 'Поиск по Википедии')]"),
+                "Cannot click",
+                3
+        );
+
+        //Поиск первой статьи--------------
+        //Ввести значение в строке поиска
+        SendKeys(
+                By.xpath("//*[contains(@text, 'Поиск по Википедии')]"),
+                "Metallica",
+                "Error Send JAVA",
+                3
+        );
+
+        //Перейти в статью
+        Click(
+                By.xpath("//*[@resource-id='org.wikipedia:id/page_list_item_title'][@text='Metallica']"),
+                "Cannot click",
+                10
+        );
+
+        Assert_withOutTimeout(
+                By.xpath("//android.view.ViewGroup/android.webkit.WebView/android.webkit.WebView"),
+                "Metallica",
+                "So little time to load the page",
+                0
+        );
+    }
+
+    @Test
     public void firstTest()
     {
 //        System.out.println("First test run");
@@ -268,10 +309,29 @@ public class FirstATest
         WebElement element = fTimeout(by, error_m, timeout);
         String compare_value = element.getAttribute("contentDescription");
 
-        final String phrase = compare_value;
-        final String findWord = value;
+        //Проверка в тексте по слову
+//        final String phrase = compare_value;
+//        final String findWord = value;
+//        if (phrase.matches(".*\\b" + findWord + ".*\\b"))
+//            System.out.println("Match");
+//        else
+//        System.out.println(compare_value);
+        Assert.assertEquals(
+                "Not True Content",
+                value,
+                compare_value
+        );
+        return element;
+    }
+
+    private WebElement Assert_withOutTimeout(By by, String value, String error_m, long timeout)
+    {
+        WebElement element = fTimeout(by, error_m, timeout);
+        String compare_value = element.getAttribute("contentDescription");
 
         //Проверка в тексте по слову
+//        final String phrase = compare_value;
+//        final String findWord = value;
 //        if (phrase.matches(".*\\b" + findWord + ".*\\b"))
 //            System.out.println("Match");
 //        else

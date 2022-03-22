@@ -67,43 +67,4 @@
 //
 //import org.junit.Test;
 //
-//@Test
-//public void firstTest2()
-//        {
-//        //Нажать кнопку ПРОПУСТИТЬ после входа в app
-//        Click(
-//        By.id("org.wikipedia:id/fragment_onboarding_skip_button"),
-//        "Cannot click",
-//        3
-//        );
-//
-//        //Перейти на строку поиск
-//        Click(
-//        By.xpath("//*[contains(@text, 'Поиск по Википедии')]"),
-//        "Cannot click",
-//        3
-//        );
-//
-//        //Поиск первой статьи--------------
-//        //Ввести значение в строке поиска
-//        SendKeys(
-//        By.xpath("//*[contains(@text, 'Поиск по Википедии')]"),
-//        "Metallica",
-//        "Error Send JAVA",
-//        3
-//        );
-//
-//        //Перейти в статью
-//        Click(
-//        By.xpath("//*[@resource-id='org.wikipedia:id/page_list_item_title'][@text='Metallica']"),
-//        "Cannot click",
-//        10
-//        );
-//
-//        FindElement(
-//        By.xpath("//android.view.ViewGroup/android.webkit.WebView/android.webkit.WebView"),
-//        "Metallica",
-//        "Not True Content",
-//        5
-//        );
-//        }
+
