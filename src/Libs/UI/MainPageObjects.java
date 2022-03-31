@@ -27,7 +27,7 @@ public class MainPageObjects
 
     public WebElement WaitElement(By by, String error_m)
     {
-        return WaitElement(by, error_m, 5);
+        return WaitElement(by, error_m, 15);
     }
 
     public WebElement Click(By by, String error_m, long timeout)
