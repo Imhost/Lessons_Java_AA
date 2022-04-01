@@ -7,6 +7,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 public class MainPageObjects
@@ -55,15 +56,28 @@ public class MainPageObjects
     }
 
     //Функция для отладки локаторов
-    public String DebugElement_Func(By by, String value, String error_m, long timeout)
+    public WebElement DebugElement_Func(By by, String value, String error_m, long timeout)
     {
         WebElement element = WaitElement(by, error_m, timeout);
         System.out.println(element);
         System.out.println(element.getAttribute("enabled"));
         System.out.println(element.getAttribute("contentDescription"));
         System.out.println(element.getAttribute("text"));
-        String compare_value = element.getAttribute("contentDescription");
+        return element;
+    }
+
+    public String DebugTest_Func(By by, String error_m, long timeout)
+    {
+        WebElement element = WaitElement(by, error_m, timeout);
+        String compare_value = element.getAttribute("text");
         return compare_value;
+    }
+
+    public int debugTestCount_Func(By by, String error_m, long timeout)
+    {
+        WebElement element = WaitElement(by, error_m, timeout);
+        List elements = driver.findElements(by);
+        return elements.size();
     }
 
     public static void TT() throws InterruptedException

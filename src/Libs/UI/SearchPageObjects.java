@@ -6,18 +6,20 @@ import org.openqa.selenium.By;
 public class SearchPageObjects extends MainPageObjects
 {
     private static final String
-            CLOSE_START_MENU = "org.wikipedia:id/fragment_onboarding_skip_button",
-            SEARCH_INIT_ELEMENT_TPL = "//*[contains(@text, '{VALUE}')]",
-            SEARCH_INPUT = "org.wikipedia:id/search_src_text",
-            ENTER_TO_ARTICLE_BY_SUBSTRING_TPL = "//*[@resource-id='org.wikipedia:id/page_list_item_title'][@text='{SUBSTRING}']",
-            NAVIGATE_UP = "Navigate up",
-            CLEAR_QUERY = "Clear query",
-            FAVORITE = "Saved",
-            ENTER_TO_FAVORITE_FOLDER = "org.wikipedia:id/item_title",
-            BACK_TO_MAIN_PAGE = "//*[@resource-id='org.wikipedia:id/search_toolbar']//android.widget.ImageButton",
-            CLOSE_WINDOW = "org.wikipedia:id/negativeButton",
-            PAGE_LIST_ITEM_TITLE = "org.wikipedia:id/page_list_item_title",
-            DEBUG_ELEMENT = "//android.view.ViewGroup/android.webkit.WebView/android.webkit.WebView";
+        CLOSE_START_MENU = "org.wikipedia:id/fragment_onboarding_skip_button",
+        SEARCH_INIT_ELEMENT_TPL = "//*[contains(@text, '{VALUE}')]",
+        SEARCH_INPUT = "org.wikipedia:id/search_src_text",
+        ENTER_TO_ARTICLE_BY_SUBSTRING_TPL = "//*[@resource-id='org.wikipedia:id/page_list_item_title'][@text='{SUBSTRING}']",
+        NAVIGATE_UP = "Navigate up",
+        CLEAR_QUERY = "Clear query",
+        FAVORITE = "Saved",
+        ENTER_TO_FAVORITE_FOLDER = "org.wikipedia:id/item_title",
+        BACK_TO_MAIN_PAGE = "//*[@resource-id='org.wikipedia:id/search_toolbar']//android.widget.ImageButton",
+        CLOSE_WINDOW = "org.wikipedia:id/negativeButton",
+        PAGE_LIST_ITEM_TITLE = "org.wikipedia:id/page_list_item_title",
+        DEBUG_ELEMENT = "//android.view.ViewGroup/android.webkit.WebView/android.webkit.WebView",
+        SEARCH_TITLE_DESC_TPL = "//androidx.recyclerview.widget.RecyclerView/android.view.ViewGroup[1]//*[@resource-id='org.wikipedia:id/page_list_item_{TEST}']",
+        COUNTS = "//androidx.recyclerview.widget.RecyclerView/android.view.ViewGroup//*[@resource-id='org.wikipedia:id/page_list_item_title']";
 
     public SearchPageObjects(AppiumDriver driver)
     {
@@ -33,6 +35,11 @@ public class SearchPageObjects extends MainPageObjects
     private static String getContainsElement(String search_word)
     {
         return SEARCH_INIT_ELEMENT_TPL.replace("{VALUE}", search_word);
+    }
+
+    private static String getTest(String search_word)
+    {
+        return SEARCH_TITLE_DESC_TPL.replace("{TEST}", search_word);
     }
     /*  TEMPLATE METHODS    */
 
@@ -132,6 +139,23 @@ public class SearchPageObjects extends MainPageObjects
     {
         this.AssertElements(By.xpath(DEBUG_ELEMENT), search_line, "Cant enter to deleted page", 15);
         return search_line;
+    }
+
+    public String[] debug_Test(String title, String desc)
+    {
+        String title_from_el = getTest(title);
+        String desc_from_el = getTest(desc);
+        String val1 = this.DebugTest_Func(By.xpath(title_from_el),"Val1", 15);
+        System.out.println(val1);
+        String val2 = this.DebugTest_Func(By.xpath(desc_from_el),"Val2", 15);
+        System.out.println(val2);
+        return new String[] {val1, val2};
+    }
+
+    public int debugTestCount(String title)
+    {
+        int count = this.debugTestCount_Func(By.xpath(COUNTS), "Cant enter to deleted page", 15);
+        return count;
     }
 
 }
