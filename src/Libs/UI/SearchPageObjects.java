@@ -2,26 +2,27 @@ package Libs.UI;
 
 import io.appium.java_client.AppiumDriver;
 import org.openqa.selenium.By;
+import org.openqa.selenium.remote.RemoteWebDriver;
 
 public class SearchPageObjects extends MainPageObjects
 {
     private static final String
-        CLOSE_START_MENU = "org.wikipedia:id/fragment_onboarding_skip_button",
-        SEARCH_INIT_ELEMENT_TPL = "//*[contains(@text, '{VALUE}')]",
-        SEARCH_INPUT = "org.wikipedia:id/search_src_text",
-        ENTER_TO_ARTICLE_BY_SUBSTRING_TPL = "//*[@resource-id='org.wikipedia:id/page_list_item_title'][@text='{SUBSTRING}']",
+        CLOSE_START_MENU = "id:org.wikipedia:id/fragment_onboarding_skip_button",
+        SEARCH_INIT_ELEMENT_TPL = "xpath://*[contains(@text, '{VALUE}')]",
+        SEARCH_INPUT = "id:org.wikipedia:id/search_src_text",
+        ENTER_TO_ARTICLE_BY_SUBSTRING_TPL = "xpath://*[@resource-id='org.wikipedia:id/page_list_item_title'][@text='{SUBSTRING}']",
         NAVIGATE_UP = "Navigate up",
         CLEAR_QUERY = "Clear query",
         FAVORITE = "Saved",
-        ENTER_TO_FAVORITE_FOLDER = "org.wikipedia:id/item_title",
-        BACK_TO_MAIN_PAGE = "//*[@resource-id='org.wikipedia:id/search_toolbar']//android.widget.ImageButton",
-        CLOSE_WINDOW = "org.wikipedia:id/negativeButton",
-        PAGE_LIST_ITEM_TITLE = "org.wikipedia:id/page_list_item_title",
-        DEBUG_ELEMENT = "//android.view.ViewGroup/android.webkit.WebView/android.webkit.WebView",
-        SEARCH_TITLE_DESC_TPL = "//androidx.recyclerview.widget.RecyclerView/android.view.ViewGroup[1]//*[@resource-id='org.wikipedia:id/page_list_item_{TEST}']",
-        COUNTS = "//androidx.recyclerview.widget.RecyclerView/android.view.ViewGroup//*[@resource-id='org.wikipedia:id/page_list_item_title']";
+        ENTER_TO_FAVORITE_FOLDER = "id:org.wikipedia:id/item_title",
+        BACK_TO_MAIN_PAGE = "xpath://*[@resource-id='org.wikipedia:id/search_toolbar']//android.widget.ImageButton",
+        CLOSE_WINDOW = "id:org.wikipedia:id/negativeButton",
+        PAGE_LIST_ITEM_TITLE = "id:org.wikipedia:id/page_list_item_title",
+        DEBUG_ELEMENT = "xpath://android.view.ViewGroup/android.webkit.WebView/android.webkit.WebView",
+        SEARCH_TITLE_DESC_TPL = "xpath://androidx.recyclerview.widget.RecyclerView/android.view.ViewGroup[1]//*[@resource-id='org.wikipedia:id/page_list_item_{TEST}']",
+        COUNTS = "xpath://androidx.recyclerview.widget.RecyclerView/android.view.ViewGroup//*[@resource-id='org.wikipedia:id/page_list_item_title']";
 
-    public SearchPageObjects(AppiumDriver driver)
+    public SearchPageObjects(RemoteWebDriver driver)
     {
         super(driver);
     }
@@ -45,38 +46,38 @@ public class SearchPageObjects extends MainPageObjects
 
     public void closeMenu()
     {
-        this.WaitElement(By.id(CLOSE_START_MENU), "Cant find element");
-        this.Click(By.id(CLOSE_START_MENU), "Cannot find and click search init element", 5);
+        this.WaitElement(CLOSE_START_MENU, "Cant find element");
+        this.Click(CLOSE_START_MENU, "Cannot find and click search init element", 5);
     }
 
     public void initSearchLine(String search_word)
     {
         String search_result_xpath = getContainsElement(search_word);
-        this.WaitElement(By.xpath(search_result_xpath), "Cant find element");
-        this.Click(By.xpath(search_result_xpath), "Cannot find and click search init element", 5);
+        this.WaitElement(search_result_xpath, "Cant find element");
+        this.Click(search_result_xpath, "Cannot find and click search init element", 5);
     }
 
     public void typeSearchLine(String search_line)
     {
-        this.SendKeys(By.id(SEARCH_INPUT), search_line, "Cant type element", 5);
+        this.SendKeys(SEARCH_INPUT, search_line, "Cant type element", 5);
     }
 
     public void enterArticle(String substring)
     {
         String search_result_xpath = getResultSearchElement(substring);
-        this.Click(By.xpath(search_result_xpath), "Cant enter element" + substring, 5);
+        this.Click(search_result_xpath, "Cant enter element" + substring, 5);
     }
 
     public String debugElement_Test(String search_line)
     {
-        this.DebugElement_Func(By.xpath(DEBUG_ELEMENT), search_line, "Cant debug element", 15);
+        this.DebugElement_Func(DEBUG_ELEMENT, search_line, "Cant debug element", 15);
         return search_line;
     }
 
     public void saveArticleToFavorite_Func(String search_word)
     {
         String search_result_xpath = getContainsElement(search_word);
-        this.Click(By.xpath(search_result_xpath), "Cant save to favorite", 5);
+        this.Click(search_result_xpath, "Cant save to favorite", 5);
     }
 
     public void navigateUp_Func()
@@ -91,7 +92,7 @@ public class SearchPageObjects extends MainPageObjects
 
     public void backToMainPage_Func()
     {
-        this.Click(By.xpath(BACK_TO_MAIN_PAGE), "Cant return to main page", 5);
+        this.Click(BACK_TO_MAIN_PAGE, "Cant return to main page", 5);
     }
 
     public void enterToFavorite_Func()
@@ -101,12 +102,12 @@ public class SearchPageObjects extends MainPageObjects
 
     public void closeWindow_Func()
     {
-        this.Click(By.id(CLOSE_WINDOW), "Cant close window", 5);
+        this.Click(CLOSE_WINDOW, "Cant close window", 5);
     }
 
     public void enterToFavoriteFolder_Func()
     {
-        this.Click(By.id(ENTER_TO_FAVORITE_FOLDER), "Cant return to main page", 5);
+        this.Click(ENTER_TO_FAVORITE_FOLDER, "Cant return to main page", 5);
     }
 
     public void listItemTitle_Func()
@@ -114,30 +115,30 @@ public class SearchPageObjects extends MainPageObjects
         try {MainPageObjects.TT();}                                             //Принудительный таймаут
         catch (InterruptedException e) {e.printStackTrace();}
 
-        this.Click(By.id(PAGE_LIST_ITEM_TITLE), "Cant enter to deleted page", 5);
+        this.Click(PAGE_LIST_ITEM_TITLE, "Cant enter to deleted page", 5);
     }
 
     public void saveToDelete_Func(String search_word)
     {
         String search_result_xpath = getContainsElement(search_word);
-        this.Click(By.xpath(search_result_xpath), "Cant enter to deleted page", 5);
+        this.Click(search_result_xpath, "Cant enter to deleted page", 5);
     }
 
     public void removeFromSaved_Func(String search_word)
     {
         String search_result_xpath = getContainsElement(search_word);
-        this.Click(By.xpath(search_result_xpath), "Cant enter to deleted page", 5);
+        this.Click(search_result_xpath, "Cant enter to deleted page", 5);
     }
 
     public void searchMetallica_Func(String search_word)
     {
         String search_result_xpath = getContainsElement(search_word);
-        this.Click(By.xpath(search_result_xpath), "Cant enter to deleted page", 15);
+        this.Click(search_result_xpath, "Cant enter to deleted page", 15);
     }
 
     public String metallicaElement_Func(String search_line)
     {
-        this.AssertElements(By.xpath(DEBUG_ELEMENT), search_line, "Cant enter to deleted page", 15);
+        this.AssertElements(DEBUG_ELEMENT, search_line, "Cant enter to deleted page", 15);
         return search_line;
     }
 
@@ -145,17 +146,16 @@ public class SearchPageObjects extends MainPageObjects
     {
         String title_from_el = getTest(title);
         String desc_from_el = getTest(desc);
-        String val1 = this.DebugTest_Func(By.xpath(title_from_el),"Val1", 15);
+        String val1 = this.DebugTest_Func(title_from_el,"Val1", 15);
         System.out.println(val1);
-        String val2 = this.DebugTest_Func(By.xpath(desc_from_el),"Val2", 15);
+        String val2 = this.DebugTest_Func(desc_from_el,"Val2", 15);
         System.out.println(val2);
         return new String[] {val1, val2};
     }
 
-    public int debugTestCount(String title)
+    public int debugTestCount()
     {
-        int count = this.debugTestCount_Func(By.xpath(COUNTS), "Cant enter to deleted page", 15);
-        return count;
+        return this.debugTestCount_Func(COUNTS, "Cant enter to deleted page", 15);
     }
 
 }

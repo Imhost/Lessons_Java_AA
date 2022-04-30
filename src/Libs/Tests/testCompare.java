@@ -17,7 +17,7 @@ public class testCompare extends CoreTestCase
         SearchPageObjects.initSearchLine(search_word);                          //Перейти на строку поиск
         SearchPageObjects.typeSearchLine(search_line);                          //Ввести значение в строке поиска
 
-        int count = SearchPageObjects.debugTestCount(search_line);
+        int count = SearchPageObjects.debugTestCount();
 
         assertTrue("Нашли менее трех "+ count, count > 3);
     }
