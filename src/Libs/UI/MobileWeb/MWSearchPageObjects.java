@@ -16,6 +16,7 @@ public class MWSearchPageObjects extends MainPageObjects {
             FAVORITE = "css:a[class='menu__item--watchlist']",
             DELETE_ARTICLE = "css:ul>li[title='{SUBSTRING}']",
             SECOND_VALIDATION = "a[href='/wiki/Java_(programming_language)']>h3",
+            COUNTS = "xpath://androidx.recyclerview.widget.RecyclerView/android.view.ViewGroup//*[@resource-id='org.wikipedia:id/page_list_item_title']",
             SEARCH_EMPTY = "css:p.without-results";
 
     public MWSearchPageObjects(RemoteWebDriver driver) {
@@ -83,5 +84,10 @@ public class MWSearchPageObjects extends MainPageObjects {
         String search_result_xpath = getResultSearchElement2(validate_title);
         this.Click(search_result_xpath, "Cant enter element" + validate_title, 5);
         return (SECOND_VALIDATION);
+    }
+
+    public int debugTestCount()
+    {
+        return this.debugTestCount_Func(COUNTS, "Cant enter to deleted page", 15);
     }
 }

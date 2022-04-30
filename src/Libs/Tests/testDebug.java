@@ -58,4 +58,19 @@ public class testDebug extends CoreTestCase
         MWSearchPageObjects.validation(validate_title);                               //Переход в избранное
         System.out.println("val");
     }
+
+    @Test
+    public void testMWCount_Element() {
+        String search_word = "Search Wikipedia";
+        String search_line = "Java";
+
+        MWSearchPageObjects MWSearchPageObjects = new MWSearchPageObjects(driver);
+
+        MWSearchPageObjects.initSearchLine();                                     //Перейти на строку поиск
+        MWSearchPageObjects.typeSearchLine(search_line);                          //Ввести значение в строке поиска
+
+        int count = MWSearchPageObjects.debugTestCount();
+
+        assertTrue("Нашли менее трех "+ count, count > 3);
+    }
 }

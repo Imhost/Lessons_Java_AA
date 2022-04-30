@@ -95,8 +95,9 @@ public class MainPageObjects
     public int debugTestCount_Func(String locator, String error_m, long timeout)
     {
         By by = this.getLocatorByString(locator);
-        WebElement element = WaitElement(locator, error_m, timeout);
-        List elements = driver.findElements(by);
+//        WebElement element = WaitElement(locator, error_m, timeout);
+        List elements = driver.findElements(by.tagName("li"));
+//        System.out.println(elements);
         return elements.size();
     }
 
