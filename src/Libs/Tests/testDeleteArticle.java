@@ -2,11 +2,20 @@ package Libs.Tests;
 
 import Libs.CoreTestCase;
 import Libs.UI.SearchPageObjects;
+import io.qameta.allure.*;
+import io.qameta.allure.junit4.DisplayName;
+import org.junit.Assert;
 import org.junit.Test;
 
+@Epic("Tests for delete")
 public class testDeleteArticle extends CoreTestCase
 {
     @Test
+    @Features(value = {@Feature(value="Compare"), @Feature(value="Article")})
+    @DisplayName("Удаление статей")
+    @Description("Описание теста которое должно быть тут")
+    @Step("Начало теста testFirst")
+    @Severity(value = SeverityLevel.BLOCKER)
     public void testFirst()
     {
         String search_word = "Search Wikipedia";
@@ -39,7 +48,7 @@ public class testDeleteArticle extends CoreTestCase
         SearchPageObjects.searchMetallica_Func(search_line_2);                               //Переход в статью
         String value = SearchPageObjects.metallicaElement_Func(search_line_2);
 
-        assertEquals(
+        Assert.assertEquals(
                 "Not True Content",
                 value,
                 search_line_2);

@@ -1,6 +1,7 @@
 package Libs.UI;
 
 import io.appium.java_client.AppiumDriver;
+import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 import org.openqa.selenium.remote.RemoteWebDriver;
 
@@ -28,22 +29,26 @@ public class SearchPageObjects extends MainPageObjects
     }
 
     /*  TEMPLATE METHODS    */
+    @Step("Использование теплейта ENTER_TO_ARTICLE_BY_SUBSTRING_TPL")
     private static String getResultSearchElement(String substring)
     {
         return ENTER_TO_ARTICLE_BY_SUBSTRING_TPL.replace("{SUBSTRING}", substring);
     }
 
+    @Step("Использование теплейта SEARCH_INIT_ELEMENT_TPL")
     private static String getContainsElement(String search_word)
     {
         return SEARCH_INIT_ELEMENT_TPL.replace("{VALUE}", search_word);
     }
 
+    @Step("Использование теплейта SEARCH_TITLE_DESC_TPL")
     private static String getTest(String search_word)
     {
         return SEARCH_TITLE_DESC_TPL.replace("{TEST}", search_word);
     }
     /*  TEMPLATE METHODS    */
 
+    @Step("Закрытие меню приветствия")
     public void closeMenu()
     {
         this.WaitElement(CLOSE_START_MENU, "Cant find element");
@@ -153,6 +158,7 @@ public class SearchPageObjects extends MainPageObjects
         return new String[] {val1, val2};
     }
 
+    @Step("Отображение резкльтата поиска")
     public int debugTestCount()
     {
         return this.debugTestCount_Func(COUNTS, "Cant enter to deleted page", 15);

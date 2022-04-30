@@ -3,12 +3,21 @@ package Libs.Tests;
 import Libs.CoreTestCase;
 import Libs.UI.MobileWeb.MWSearchPageObjects;
 import Libs.UI.SearchPageObjects;
+import io.qameta.allure.*;
+import io.qameta.allure.junit4.DisplayName;
+import org.junit.Assert;
 import org.junit.Test;
 
+@Epic("Tests for Debug")
 public class testDebug extends CoreTestCase
 {
 //--
     @Test
+    @Features(value = {@Feature(value="Screen"), @Feature(value="Article")})
+    @DisplayName("Проверка удаления статьи")
+    @Description("Описание теста которое должно быть тут")
+    @Step ("Начало теста testDebug_Element")
+    @Severity(value = SeverityLevel.NORMAL)
     public void testDebug_Element()
     {
         String search_word = "Search Wikipedia";
@@ -22,16 +31,20 @@ public class testDebug extends CoreTestCase
         SearchPageObjects.enterArticle(search_line);                            //Перейти в статью
         String value = SearchPageObjects.debugElement_Test(search_line);        //Получение атрибутов элемента
 
-        assertEquals(
+        Assert.assertEquals(
                 "Not True Content",
                 search_line,
                 value);
     }
 
     @Test
+    @Features(value = {@Feature(value="Screen"), @Feature(value="Article")})
+    @DisplayName("Проверка удаления статьи")
+    @Description("Описание теста которое должно быть тут")
+    @Step ("Начало теста testMW_Search_Element")
+    @Severity(value = SeverityLevel.NORMAL)
     public void testMW_Search_Element()
     {
-        String search_word = "Search Wikipedia";
         String search_line = "Java";
         String search_line2 = "Metallica";
         String substring = "Object-oriented programming language";
@@ -60,6 +73,11 @@ public class testDebug extends CoreTestCase
     }
 
     @Test
+    @Features(value = {@Feature(value="Screen"), @Feature(value="Article")})
+    @DisplayName("Проверка найденых результатов > 3")
+    @Description("Описание теста которое должно быть тут")
+    @Step ("Начало теста MWCount_Element")
+    @Severity(value = SeverityLevel.BLOCKER)
     public void testMWCount_Element() {
         String search_word = "Search Wikipedia";
         String search_line = "Java";
@@ -71,6 +89,8 @@ public class testDebug extends CoreTestCase
 
         int count = MWSearchPageObjects.debugTestCount();
 
-        assertTrue("Нашли менее трех "+ count, count > 3);
+        Assert.assertTrue("Нашли менее трех "+ count, count > 3);
+
+        //MWSearchPageObjects.takeScreenshot("elements_on_page");
     }
 }

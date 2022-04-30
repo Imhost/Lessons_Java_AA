@@ -104,6 +104,6 @@ public class Platform
     public String getPlatformVar()
     {
 //        return System.getenv("PLATFORM");
-        return ("mobile_web");
+        return ("android");
     }
 }

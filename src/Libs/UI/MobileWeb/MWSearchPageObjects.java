@@ -1,6 +1,7 @@
 package Libs.UI.MobileWeb;
 
 import Libs.UI.MainPageObjects;
+import io.qameta.allure.Step;
 import org.openqa.selenium.remote.RemoteWebDriver;
 
 public class MWSearchPageObjects extends MainPageObjects {
@@ -86,8 +87,9 @@ public class MWSearchPageObjects extends MainPageObjects {
         return (SECOND_VALIDATION);
     }
 
+    @Step("Возврат результата подсчета")
     public int debugTestCount()
     {
-        return this.debugTestCount_Func(COUNTS, "Cant enter to deleted page", 15);
+        return this.debugMWTestCount_Func(COUNTS, "Cant enter to deleted page", 15);
     }
 }
